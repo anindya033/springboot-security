@@ -58,6 +58,10 @@
 			<scope>runtime</scope>
 			<optional>true</optional> <!-- Prevents it from being included in the production build -->
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
 	</dependencies>
 
