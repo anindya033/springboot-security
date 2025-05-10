@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/security")
+@RequestMapping("")
 public class WelcomeController {
 	
-	@GetMapping(value="")
+	@GetMapping(value="/")
 	public String welcome() {
 		return "Welcome to spring security...";
 	}
