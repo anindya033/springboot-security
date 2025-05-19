@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -57,14 +58,19 @@ public class WebSecurityConfig {
 		this.userDetailsService = userDetailsService;
 	}
 
-
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder(10);
+	}
+	
 	@Bean
 	@SuppressWarnings("deprecation")
 	public AuthenticationProvider authenticationProvider() {
 		
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 		provider.setUserDetailsService(userDetailsService);
-		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+		//provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+	    provider.setPasswordEncoder(bCryptPasswordEncoder());  // <-- here
 		
 		return provider;
 		
