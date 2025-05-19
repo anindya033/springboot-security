@@ -11,19 +11,34 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.crafter.security.service.CustomUserDetailService;
+
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+	
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
 
 		try {
 
-			httpSecurity.authorizeHttpRequests(req -> req.anyRequest().authenticated())
-					.formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults())
+			httpSecurity
+					.authorizeHttpRequests
+					(
+							req ->
+								req
+								.requestMatchers("register").permitAll()
+								.requestMatchers("login").permitAll()
+								.anyRequest().authenticated()
+					)
+					//.formLogin(Customizer.withDefaults()) // this is to get default login page
+					.httpBasic(Customizer.withDefaults())
 					.csrf(csrf -> csrf.disable());
 			// .httpBasic()
 
@@ -35,7 +50,26 @@ public class WebSecurityConfig {
 		}
 
 	}
+	
+	private final CustomUserDetailService userDetailsService;
+	
+	public WebSecurityConfig(CustomUserDetailService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
 
+
+	@Bean
+	@SuppressWarnings("deprecation")
+	public AuthenticationProvider authenticationProvider() {
+		
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		provider.setUserDetailsService(userDetailsService);
+		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+		
+		return provider;
+		
+	}
+	/*
 	@Bean
 	public UserDetailsService userDetailsService() {
 		UserDetails user = User
@@ -51,6 +85,6 @@ public class WebSecurityConfig {
 
 		return new InMemoryUserDetailsManager(user, nikhil);
 
-	}
+	}*/
 
 }
