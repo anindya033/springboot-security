@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crafter.security.entity.UserEntity;
 import com.crafter.security.repo.UserRepository;
+import com.crafter.security.service.UserService;
 
 @RestController
 public class UserController {
@@ -17,13 +18,17 @@ public class UserController {
 	@Autowired
 	private final UserRepository userRepo;
 	
-	public UserController(UserRepository repo) {
+	private final UserService userService;
+	
+	public UserController(UserRepository repo, UserService userService) {
 		this.userRepo = repo;
+		this.userService = userService;
 	}
 	
 	@PostMapping("/register")
 	public UserEntity register (@RequestBody UserEntity user) {
-		return userRepo.save(user);
+		//return userRepo.save(user);
+		return userService.register(user);
 	}
 	
 	@PostMapping("/login")
