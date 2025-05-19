@@ -18,12 +18,15 @@ public class UserService {
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private final AuthenticationManager authenticationManager;
+	
+	private final JWTService jwtService;
 
 	public UserService(UserRepository userRepo, BCryptPasswordEncoder bCryptPasswordEncoder,
-			AuthenticationManager authenticationManager) {
+			AuthenticationManager authenticationManager, JWTService jwtService) {
 		this.userRepo = userRepo;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.authenticationManager = authenticationManager;
+		this.jwtService = jwtService;
 	}
 
 	public UserEntity register(UserEntity user) {
@@ -39,7 +42,7 @@ public class UserService {
 		UserEntity userObj = userRepo.findByUsername(user.getUsername());
 
 		if (authManager.isAuthenticated()) {
-			return "12DFCMSDFJHIDSF2522S.ASD2585545454525";
+			return jwtService.generateToken(user);
 		}
 
 		return "Username not found";
