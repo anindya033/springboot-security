@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,21 +34,8 @@ public class UserController {
 	
 	@PostMapping("/login")
     public String login(@RequestBody UserEntity user) {
-		UserEntity userObj = userRepo.findByUsername(user.getUsername());
-		if (!Objects.isNull(userObj)) {
-            
-            return "Success" ;
-        }
-       /*
-		Optional<UserEntity> userOpt = userRepo.findByUsername(user.getUsername());
-
-        if (userOpt.isPresent()) {
-            UserEntity user1 = userOpt.get();
-            // In a real app, use BCrypt password encoder to compare hashes
-            return "Success" ;//user.getPassword().equals(password);
-        }
-        */
-        return "Username not found";
+		
+		return userService.verify(user);
     }
 
 }
