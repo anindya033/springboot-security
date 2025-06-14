@@ -1,5 +1,6 @@
 package com.crafter.security.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.crafter.security.service.CustomUserDetailService;
 
@@ -25,6 +27,16 @@ import org.springframework.security.config.Customizer;
 @EnableWebSecurity
 public class WebSecurityConfig {
 	
+	@Autowired
+	public final JwtAuthenticationFilter jwtAuthenticationFilter ;
+	
+	private final CustomUserDetailService userDetailsService;
+	
+	public WebSecurityConfig(CustomUserDetailService userDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter) {
+		this.userDetailsService = userDetailsService;
+		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+	}
+
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
@@ -42,7 +54,9 @@ public class WebSecurityConfig {
 					)
 					//.formLogin(Customizer.withDefaults()) // this is to get default login page
 					.httpBasic(Customizer.withDefaults())
-					.csrf(csrf -> csrf.disable());
+					.csrf(csrf -> csrf.disable())
+					.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+					;
 			// .httpBasic()
 
 			return httpSecurity.build();
@@ -54,12 +68,6 @@ public class WebSecurityConfig {
 
 	}
 	
-	private final CustomUserDetailService userDetailsService;
-	
-	public WebSecurityConfig(CustomUserDetailService userDetailsService) {
-		this.userDetailsService = userDetailsService;
-	}
-
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder(10);
