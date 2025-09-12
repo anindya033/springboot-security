@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "0136ae06-e57a-47e5-94a5-a9b06eb03033",
+		"name": "Security",
+		"description": "This Collection is created to implement the Security in an spring boot application.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_CSRF",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "nikhil",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "nikhil",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/security/csrf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"security",
+						"csrf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add_Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVVNFUiIsImN1c3RvbUNsYWltIjoic29tZVZhbHVlIiwic3ViIjoibmlraGlsIiwiaXNzIjoiQ1JBRlRFUiIsImlhdCI6MTc1NzcwOTUzMywiZXhwIjoxNzU3NzQ1NTMzfQ.39Kl60f-WFKvZ9GeNA3G6pcHvS1W2vGWXm7zcorNbxkJej4c_LPs05bHEYW7pqkBOz51xRs87uoxNSdateq3og",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CSRF-TOKEN",
+						"value": "oYBbPsHtYhT4oBEUJANpYhB7ve2Q4fNdS3KRiH9XP8peSI5ww-FiX_GLUCPVlSEtEi5dUSlDkNTz0sRwLUL16R4zCPo7fL9E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\" : 2,\r\n    \"productName\" : \"Android\",\r\n    \"productPrice\" : 13000.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/security/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"security",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add_Product_using_Jwt",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVVNFUiIsImN1c3RvbUNsYWltIjoic29tZVZhbHVlIiwic3ViIjoibmlraGlsIiwiaXNzIjoiQ1JBRlRFUiIsImlhdCI6MTc0OTg5NzY4NiwiZXhwIjoxNzQ5OTMzNjg2fQ.Ntv_2-fSdfZrEHcxzwvx5fcMXTEfccyh2REOkcWHi-V-pf9VS4atVSGIoKBh9SisRK15ataBmBOZXbYUN80rkA"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\" : 2,\r\n    \"productName\" : \"Android\",\r\n    \"productPrice\" : 13000.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/security/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"security",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVVNFUiIsImN1c3RvbUNsYWltIjoic29tZVZhbHVlIiwic3ViIjoibmlraGlsIiwiaXNzIjoiQ1JBRlRFUiIsImlhdCI6MTc1NzcwOTUzMywiZXhwIjoxNzU3NzQ1NTMzfQ.39Kl60f-WFKvZ9GeNA3G6pcHvS1W2vGWXm7zcorNbxkJej4c_LPs05bHEYW7pqkBOz51xRs87uoxNSdateq3og",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/security/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"security",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"nikhil\",\r\n    \"password\" : \"nikhil\",\r\n    \"role\" : \"User\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"nikhil\",\r\n    \"password\" : \"nikhil\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Product_Using_JWT",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVVNFUiIsImN1c3RvbUNsYWltIjoic29tZVZhbHVlIiwic3ViIjoibmlraGlsIiwiaXNzIjoiQ1JBRlRFUiIsImlhdCI6MTc0OTg5NzY4NiwiZXhwIjoxNzQ5OTMzNjg2fQ.Ntv_2-fSdfZrEHcxzwvx5fcMXTEfccyh2REOkcWHi-V-pf9VS4atVSGIoKBh9SisRK15ataBmBOZXbYUN80rkA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/security/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"security",
+						"get"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
