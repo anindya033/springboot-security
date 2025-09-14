@@ -1,0 +1,662 @@
+{
+  "info": {
+    "name": "Redis Playground API",
+    "_postman_id": "redis-playground-collection",
+    "description": "Collection to test Redis data structures with Spring Boot",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Save String",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/string/save/name",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "string",
+            "save",
+            "name"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "\"Andy\""
+        }
+      }
+    },
+    {
+      "name": "Get String",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/string/get/name",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "string",
+            "get",
+            "name"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete String",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/string/delete/name",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "string",
+            "delete",
+            "name"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Push To List",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/list/push/cities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "list",
+            "push",
+            "cities"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "\"London\""
+        }
+      }
+    },
+    {
+      "name": "Get List",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/list/get/cities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "list",
+            "get",
+            "cities"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pop From List",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/list/pop/cities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "list",
+            "pop",
+            "cities"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add To Set",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/set/add/roles",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "set",
+            "add",
+            "roles"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "[\"Admin\", \"User\", \"Manager\"]"
+        }
+      }
+    },
+    {
+      "name": "Get Set",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/set/get/roles",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "set",
+            "get",
+            "roles"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Check Member in Set",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/set/ismember/roles/User",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "set",
+            "ismember",
+            "roles",
+            "User"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Put To Hash (ID)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/hash/put/user:1/id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "hash",
+            "put",
+            "user:1",
+            "id"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "101"
+        }
+      }
+    },
+    {
+      "name": "Put To Hash (Name)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/hash/put/user:1/name",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "hash",
+            "put",
+            "user:1",
+            "name"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "\"Andy\""
+        }
+      }
+    },
+    {
+      "name": "Get From Hash",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/hash/get/user:1/name",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "hash",
+            "get",
+            "user:1",
+            "name"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete From Hash",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/hash/delete/user:1/name",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "hash",
+            "delete",
+            "user:1",
+            "name"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add To ZSet (Alice)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/zset/add/scores?value=Alice&score=100",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "zset",
+            "add",
+            "scores?value=Alice&score=100"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add To ZSet (Bob)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/zset/add/scores?value=Bob&score=200",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "zset",
+            "add",
+            "scores?value=Bob&score=200"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add To ZSet (Charlie)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/zset/add/scores?value=Charlie&score=150",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "zset",
+            "add",
+            "scores?value=Charlie&score=150"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get ZSet",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/zset/get/scores",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "zset",
+            "get",
+            "scores"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Non-existing String",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/string/get/unknownKey",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "string",
+            "get",
+            "unknownKey"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Non-existing String",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/string/delete/unknownKey",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "string",
+            "delete",
+            "unknownKey"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Empty List",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/list/get/emptyList",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "list",
+            "get",
+            "emptyList"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pop From Empty List",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/list/pop/emptyList",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "list",
+            "pop",
+            "emptyList"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Non-existing Set",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/set/get/emptySet",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "set",
+            "get",
+            "emptySet"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Check Member In Non-existing Set",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/set/ismember/emptySet/ghost",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "set",
+            "ismember",
+            "emptySet",
+            "ghost"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Non-existing Hash Field",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/hash/get/user:99/name",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "hash",
+            "get",
+            "user:99",
+            "name"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Non-existing Hash Field",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/hash/delete/user:99/name",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "hash",
+            "delete",
+            "user:99",
+            "name"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Non-existing ZSet",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/redis/zset/get/emptyScores",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "redis",
+            "zset",
+            "get",
+            "emptyScores"
+          ]
+        }
+      }
+    }
+  ]
+}
